@@ -1,5 +1,4 @@
 // select batch
-
 browser.storage.local.get("batchId").then(res => console.log);
 browser.storage.local.get("batchId").then(res => alert);
 
