@@ -1,16 +1,12 @@
-// browser.runtime.onInstalled.addListener(function() {
-//   localStorage.setItem("batchId", 968);
-//   // console.log(localStorage.getItem("batchId"));
-//   // browser.declarativeContent.onPageChanged.removeRules(undefined, function() {
-//   //   browser.declarativeContent.onPageChanged.addRules([
-//   //     {
-//   //       conditions: [
-//   //         new browser.declarativeContent.PageStateMatcher({
-//   //           pageUrl: { hostEquals: "learn.co" }
-//   //         })
-//   //       ],
-//   //       actions: [new browser.declarativeContent.ShowPageAction()]
-//   //     }
-//   //   ]);
-//   // });
-// });
+const listener = (tabId, change, tab) => {
+  // send a message to content.js
+  browser.tabs.executeScript({
+    file: `select-batch.js`
+  });
+};
+
+const filter = {
+  urls: ["https://learn.co/curriculum/tracks/*"]
+};
+
+browser.tabs.onUpdated.addListener(listener, filter);

@@ -1,10 +1,8 @@
 function onError(error) {
-  console.log(`Error: ${error}`);
+  console.warning(`Error: ${error}`);
 }
 
 function createBookmarklet(res) {
-  console.log(res);
-  console.log(res.batchId);
   const s = document.createElement("script");
   s.textContent = `(()=>{$('.batches').val(${
     res.batchId
