@@ -1,31 +1,26 @@
 {
+  "manifest_version": 2,
   "name": "Flatiron Instructor Toolz",
   "version": "0.0.1",
   "description": "Cool 🛠 for Flatiron instructors",
-  "permissions": ["activeTab","declarativeContent","storage"],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "content_scripts": [
     {
       "matches": ["https://learn.co/curriculum/tracks/*"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
+      "js": ["content.js"]
     }
   ],
-  "page_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/learn-16x16.png",
-      "32": "images/learn-32x32.png",
-      "120": "images/learn-120x120.png"
-    }
+  "browser_action": {
+    "default_icon": "data/learn-48x48.png",
+    "default_title": "Flatiron Instructor Toolz",
+    "default_popup": "./popup.html"
   },
   "icons": {
-    "16": "images/learn-16x16.png",
-    "32": "images/learn-32x32.png",
-    "120": "images/learn-120x120.png"
+    "48": "data/learn-48x48.png",
+    "96": "data/learn-96x96.png"
   },
-  "manifest_version": 2
+  "permissions": [
+    "https://learn.co/curriculum/tracks/*",
+    "activeTab",
+    "storage"
+  ]
 }

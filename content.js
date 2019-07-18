@@ -1,11 +1,23 @@
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
+function createBookmarklet(res) {
+  console.log(res);
+  console.log(res.batchId);
+  const s = document.createElement("script");
+  s.textContent = `(()=>{$('.batches').val(${
+    res.batchId
+  }),$('.batches').trigger('change')})()`;
+  document.head.appendChild(s);
+  s.remove();
+}
+
 const selectBatch = () => {
   // get batchId from extension storage
-  chrome.storage.sync.get("batchId", ({ batchId }) => {
-    const s = document.createElement("script");
-    s.textContent = `(()=>{$('.batches').val(${batchId}),$('.batches').trigger('change')})()`;
-    document.head.appendChild(s);
-    s.remove();
-  });
+  const getting = browser.storage.local.get("batchId");
+
+  getting.then(createBookmarklet, onError);
 };
 
 // use mutationObserver to check when the element we need has been added
